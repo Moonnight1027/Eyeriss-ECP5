@@ -1,0 +1,21 @@
+# build / simulation outputs
+build/
+*.vvp
+*.vcd
+sim/layer_vectors.txt
+docs/_render.html
+
+# stale artifacts and local backups
+_backup_*/
+blink.*
+eyeriss.bit
+eyeriss.config
+eyeriss.json
+
+# python
+__pycache__/
+*.pyc
+
+# model weights and datasets are not part of this repo
+*.pth
+*.pkl

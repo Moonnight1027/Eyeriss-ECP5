@@ -1,0 +1,49 @@
+# 1. 讀取全域參數定義檔 (必須最先讀取)
+read_verilog -sv define.svh
+
+# 2. 讀取 NoC (GIN) 廣播網路
+read_verilog -sv PE_array/GIN/GIN_MulticastController.sv
+read_verilog -sv PE_array/GIN/GIN_Bus.sv
+read_verilog -sv PE_array/GIN/GIN.sv
+
+# 3. 讀取 NoC (GON) 收集網路
+read_verilog -sv PE_array/GON/GON_MulticastController.sv
+read_verilog -sv PE_array/GON/GON_Bus.sv
+read_verilog -sv PE_array/GON/GON.sv
+
+# 4. 讀取運算核心與陣列
+read_verilog -sv PE_array/PE.sv
+read_verilog -sv PE_array/PE_array.sv
+
+# 5. 讀取後處理單元 (PPU) 及其子模組
+read_verilog -sv PPU/PostQuant.sv
+read_verilog -sv PPU/Maxpool_Qint8.sv
+read_verilog -sv PPU/ReLU_Qint8.sv
+read_verilog -sv PPU/PPU.sv
+
+# 6. 讀取 SRAM
+read_verilog -sv GLB_SRAM.sv
+
+# 7. 讀取開源 USB CDC IP (明確條列，解決 Windows 萬用字元報錯)
+read_verilog usb/edge_detect.v
+read_verilog usb/serial.v
+read_verilog usb/usb_fs_in_arb.v
+read_verilog usb/usb_fs_in_pe.v
+read_verilog usb/usb_fs_out_arb.v
+read_verilog usb/usb_fs_out_pe.v
+read_verilog usb/usb_fs_pe.v
+read_verilog usb/usb_fs_rx.v
+read_verilog usb/usb_fs_tx_mux.v
+read_verilog usb/usb_fs_tx.v
+read_verilog usb/usb_reset_det.v
+read_verilog usb/usb_serial_ctrl_ep.v
+read_verilog usb/usb_uart_bridge_ep.v
+read_verilog usb/usb_uart_core.v
+read_verilog usb/usb_uart.v
+read_verilog usb/usb_uart_ecp5.v
+
+# 8. 讀取頂層 SoC 整合模組
+read_verilog -sv -I. Eyeriss_SoC_Top.sv
+
+# 9. 執行 ECP5 邏輯合成，並指定新的 Top Module
+synth_ecp5 -abc9 -top Eyeriss_SoC_Top -json build/eyeriss.json

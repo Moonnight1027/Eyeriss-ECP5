@@ -1,0 +1,27 @@
+# ==========================================
+# 1. 系統時脈與重置按鈕 (Clock & Reset)
+# ==========================================
+# OrangeCrab 的 48MHz 時脈固定在 A9 腳位
+LOCATE COMP "clk" SITE "A9";
+IOBUF PORT "clk" IO_TYPE=LVCMOS33;
+
+# OrangeCrab 的按鈕 (btn0) 固定在 J17 腳位，我們將它作為系統的 rst
+LOCATE COMP "rst" SITE "J17";
+IOBUF PORT "rst" IO_TYPE=LVCMOS33;
+
+# ==========================================
+# 2. Type-C USB 通訊腳位 (維持不變)
+# ==========================================
+LOCATE COMP "usb_d_p" SITE "N1";
+LOCATE COMP "usb_d_n" SITE "M2";
+LOCATE COMP "usb_pullup" SITE "N2";
+
+IOBUF PORT "usb_d_p" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "usb_d_n" IO_TYPE=LVCMOS33 DRIVE=4;
+IOBUF PORT "usb_pullup" IO_TYPE=LVCMOS33 DRIVE=4;
+
+# ==========================================
+# 3. Heartbeat LED (Debug)
+# ==========================================
+LOCATE COMP "led" SITE "K4";
+IOBUF PORT "led" IO_TYPE=LVCMOS33;
