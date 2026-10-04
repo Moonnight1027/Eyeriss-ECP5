@@ -1,5 +1,5 @@
-`ifndef LAB3_DEFINE
-`define LAB3_DEFINE
+`ifndef EYERISS_DEFINE
+`define EYERISS_DEFINE
 
 `define DATA_BITS 32
 `define FILT_R 3
