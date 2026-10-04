@@ -29,14 +29,15 @@ to the FPGA, and its output matches the software golden model bit for bit.
 
 | Item | Result |
 |---|---|
-| Target | Lattice ECP5-25F (LFE5U-25F), OrangeCrab r0.2 |
+| Target | Lattice ECP5-25F (LFE5U-25F-8MG285C), OrangeCrab r0.2.1 |
 | Resources | DSP 20 / 28, EBR 16 / 56, LUT 30 %, FF 19 % |
-| Clock | 48 MHz (Fmax ≈ 55 MHz, nextpnr, default speed grade) |
+| Clock | 48 MHz (nextpnr Fmax 67–72 MHz at speed grade -8, depending on placement seed) |
 | Data format | INT8 activations and weights, 32-bit partial sums |
 | Supported layer | 3×3 conv, stride 1, bias + ReLU, ≤ 64 input channels, ≤ 4 filters per run, tiles ≤ 32×32 |
 | RTL simulation | `tb_top` 15/15, `tb_layer` 543 reply bytes / 0 errors, `tb_zlp` pass |
 | Hardware regression | `test_eyeriss.py` 13/13 on the board |
 | ResNet18 `layer1[0].conv1` (64→64, 56×56) | 200,704 / 200,704 outputs bit-exact, SQNR 28.2 dB vs float, prediction unchanged |
+| Layer run time | ≈ 2.5 s of FPGA compute (256 runs × ~469k cycles, from simulation), ≈ 10.5 s end to end over USB |
 
 Why a 2×2 array: every PE uses four 18×18 multipliers, and a 3×3 array would need
 36 of the 28 available. Packing four INT8 channels into one 32-bit word

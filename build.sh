@@ -8,7 +8,7 @@ export PATH="$OSS/bin:$OSS/lib:$PATH"
 mkdir -p build
 
 yosys -q -l build/yosys.log build.ys
-nextpnr-ecp5 --25k --package CSFBGA285 --lpf orangecrab.lpf \
+nextpnr-ecp5 --25k --speed 8 --package CSFBGA285 --lpf orangecrab.lpf \
     --json build/eyeriss.json --textcfg build/eyeriss.config \
     --freq 48 --timing-allow-fail -l build/nextpnr.log
 # The OrangeCrab DFU bootloader rejects compressed / SPI-freq bitstreams
