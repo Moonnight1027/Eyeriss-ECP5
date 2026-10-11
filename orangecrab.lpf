@@ -5,12 +5,12 @@
 LOCATE COMP "clk" SITE "A9";
 IOBUF PORT "clk" IO_TYPE=LVCMOS33;
 
-# OrangeCrab 的按鈕 (btn0) 固定在 J17 腳位，我們將它作為系統的 rst
+# OrangeCrab 的按鈕 (btn0) 固定在 J17 腳位，作為系統 rst
 LOCATE COMP "rst" SITE "J17";
 IOBUF PORT "rst" IO_TYPE=LVCMOS33;
 
 # ==========================================
-# 2. Type-C USB 通訊腳位 (維持不變)
+# 2. Type-C USB 通訊腳位
 # ==========================================
 LOCATE COMP "usb_d_p" SITE "N1";
 LOCATE COMP "usb_d_n" SITE "M2";

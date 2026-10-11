@@ -19,7 +19,7 @@ module GON_MulticastController #(
 );
 
 // 只有 tag 跟 id 一樣才會傳資料
-// Continuous assign (a declaration initializer would evaluate only once)
+// Continuous assign: target follows tag / id every cycle
 wire is_target;
 assign is_target = (tag == id);
 

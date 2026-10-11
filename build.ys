@@ -24,7 +24,7 @@ read_verilog -sv PPU/PPU.sv
 # 6. 讀取 SRAM
 read_verilog -sv GLB_SRAM.sv
 
-# 7. 讀取開源 USB CDC IP (明確條列，解決 Windows 萬用字元報錯)
+# 7. 讀取開源 USB CDC IP (逐檔列出，不使用萬用字元)
 read_verilog usb/edge_detect.v
 read_verilog usb/serial.v
 read_verilog usb/usb_fs_in_arb.v
