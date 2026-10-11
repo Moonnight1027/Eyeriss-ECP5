@@ -17,7 +17,7 @@ module GIN_MulticastController #(
 );
 
 // target：tag 跟自己的 id 一樣，或 tag 是廣播地址 (全為 1)
-// Continuous assign (a declaration initializer would evaluate only once)
+// Continuous assign: target follows tag / id every cycle
 wire is_target;
 assign is_target = (tag == id) || (tag == {ID_SIZE{1'b1}});
 
